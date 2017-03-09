@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
 using Xamarin.Forms;
 
 namespace CardApp
@@ -10,6 +8,11 @@ namespace CardApp
 		public HomePage()
 		{
 			InitializeComponent();
+		}
+
+		private void onScanCard(object sender, EventArgs e)
+		{
+			DependencyService.Get<ICardService>().StartCapture();
 		}
 	}
 }

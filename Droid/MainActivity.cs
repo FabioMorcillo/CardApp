@@ -1,12 +1,10 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using Card.IO;
 
 namespace CardApp.Droid
 {
@@ -23,6 +21,21 @@ namespace CardApp.Droid
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 
 			LoadApplication(new App());
+		}
+
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult(requestCode, resultCode, data);
+
+			if (data != null)
+			{
+				// Be sure to JavaCast to a CreditCard (normal cast won't work)      
+				InfoShareHelper.Instance.CardInfo = data.GetParcelableExtra(CardIOActivity.ExtraScanResult).JavaCast<CreditCard>();
+			}
+			else
+			{
+				Console.WriteLine("Scanning Canceled!");
+			}
 		}
 	}
 }

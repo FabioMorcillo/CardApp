@@ -8,7 +8,7 @@ namespace CardApp
 		{
 			InitializeComponent();
 
-			MainPage = new CardAppPage();
+			MainPage = new HomePage();
 		}
 
 		protected override void OnStart()
